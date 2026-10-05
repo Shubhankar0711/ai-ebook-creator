@@ -181,13 +181,4 @@ npm test
 
 ---
 
-## 🎯 Placement Interview Questions & Answers
 
-### Q1: How did you ensure payment verification security in Razorpay?
-> **Answer**: In Razorpay, client-side callbacks can be spoofed or intercepted. To make payments production-grade, order creation is handled on the Express backend where price is determined from a server-side dictionary (`PLAN_PRICES`). When the payment completes, the frontend sends `razorpay_order_id`, `razorpay_payment_id`, and `razorpay_signature` to `/api/payments/verify`. The backend computes HMAC-SHA256 of `order_id|payment_id` using `RAZORPAY_KEY_SECRET`. If signatures match, the payment record status is updated to `SUCCESS` and subscription activated. If signatures mismatch, the server returns `403 Payment verification failed` and rejects subscription upgrades.
-
-### Q2: How is multi-tenant resource ownership enforced?
-> **Answer**: We enforce strict MongoDB query isolation in controllers. Instead of calling `Book.findById(id)`, every database operation enforces `{ _id: id, owner: req.user._id }`. This prevents Horizontal Privilege Escalation (IDOR), ensuring users cannot access or tamper with other users' books, chapters, analytics, or export files.
-
-### Q3: How are daily AI rate limits enforced without race conditions?
-> **Answer**: The backend `limitAiUsage` middleware inspects the user's `lastAiUsageDate` against the current date string. If a new day has started, `aiUsageToday` resets to 0. For Free users, if `aiUsageToday >= 10`, the request is rejected with `403 Limit Reached`. We use atomic MongoDB `$inc` updates to prevent concurrent request race conditions.
