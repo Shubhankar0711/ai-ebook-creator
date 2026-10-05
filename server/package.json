@@ -1,0 +1,36 @@
+{
+  "name": "ebook-creator-server",
+  "version": "1.0.0",
+  "description": "AI-Powered eBook Creator Backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest --detectOpenHandles --forceExit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "docx": "^9.7.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.3.1",
+    "express-validator": "^7.1.0",
+    "groq-sdk": "^1.5.0",
+    "helmet": "^7.1.0",
+    "jest": "^30.4.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^10.0.14",
+    "nodemon": "^3.1.4",
+    "pdf-lib": "^1.17.1",
+    "razorpay": "^2.9.8",
+    "supertest": "^7.2.2",
+    "uuid": "^10.0.0"
+  }
+}

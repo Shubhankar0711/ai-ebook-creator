@@ -1,0 +1,60 @@
+﻿import { Check, Sparkles, Zap, Building2 } from"lucide-react";
+
+export const PRICING_PLANS = [
+ {
+ id:"free",
+ name:"Free",
+ price:"₹0",
+ period:"forever",
+ icon: Zap,
+ color:"text-slate-500",
+ bg:"bg-slate-100 dark:bg-slate-800",
+ features: [
+"5 eBooks",
+"10 AI generations/day",
+"PDF export",
+"Basic editor",
+"Community support",
+ ],
+ highlight: false,
+ disabled: true,
+ },
+ {
+ id:"pro",
+ name:"Pro",
+ price:"₹999",
+ period:"/month",
+ icon: Sparkles,
+ color:"text-primary",
+ bg:"bg-accent dark:bg-accent",
+ highlight: true,
+ badge:"Most Popular",
+ features: [
+"Unlimited eBooks",
+"500 AI generations/day",
+"All AI tools",
+"Priority support",
+"Analytics",
+"Share links",
+"Export DOCX",
+ ],
+ },
+ {
+ id:"enterprise",
+ name:"Enterprise",
+ price:"₹3,999",
+ period:"/month",
+ icon: Building2,
+ color:"text-amber-600",
+ bg:"bg-amber-100 dark:bg-amber-900/30",
+ features: [
+"Everything in Pro",
+"Team workspace",
+"API access",
+"Custom branding",
+"Dedicated support",
+"SLA guarantee",
+ ],
+ },
+];
+

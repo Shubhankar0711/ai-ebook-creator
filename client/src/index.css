@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Variables (light mode defaults) ──────────────────── */
+:root {
+  --color-background:    #FAFAFA;
+  --color-card:          #FFFFFF;
+  --color-border:        #E5E7EB;
+  --color-text:          #111827;
+  --color-text-secondary:#6B7280;
+  --color-accent:        #F3F4F6;
+  --color-primary:       #2563EB;
+  --color-success:       #22C55E;
+  --color-warning:       #F59E0B;
+  --color-danger:        #EF4444;
+}
+
+/* ── CSS Variables (dark mode) ──────────────────────────────── */
+html.dark {
+  --color-background:    #0f172a;
+  --color-card:          #1e293b;
+  --color-border:        #334155;
+  --color-text:          #f1f5f9;
+  --color-text-secondary:#94a3b8;
+  --color-accent:        #1e293b;
+  --color-primary:       #3b82f6;
+  --color-success:       #4ade80;
+  --color-warning:       #fbbf24;
+  --color-danger:        #f87171;
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  #root { width: 100%; min-height: 100vh; }
+
+  h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+
+  p  { margin: 0; }
+  a  { text-decoration: none; color: inherit; }
+  button { cursor: pointer; border: none; background: none; }
+  input, textarea, select { font-family: inherit; }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 99px; }
+}
+
+@layer components {
+
+  /* ── Cards ── */
+  .card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    @apply rounded-xl shadow-sm overflow-hidden;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg
+           text-sm font-medium transition-colors shadow-sm
+           focus-visible:outline-none focus-visible:ring-2
+           disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary:hover { filter: brightness(1.1); }
+
+  .btn-secondary {
+    background-color: var(--color-card);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg
+           text-sm font-medium transition-colors shadow-sm
+           focus-visible:outline-none disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-secondary:hover { background-color: var(--color-accent); }
+
+  .btn-ghost {
+    color: var(--color-text);
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg
+           text-sm font-medium transition-colors
+           focus-visible:outline-none disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-ghost:hover { background-color: var(--color-accent); }
+
+  /* ── Input ── */
+  .input-field {
+    background-color: var(--color-card);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    @apply flex h-10 w-full rounded-md px-3 py-2 text-sm
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40
+           disabled:cursor-not-allowed disabled:opacity-50 transition-colors;
+  }
+  .input-field::placeholder { color: var(--color-text-secondary); }
+  .input-field:focus { border-color: var(--color-primary); outline: none; }
+
+  /* ── Badge ── */
+  .badge {
+    background-color: var(--color-accent);
+    color: var(--color-text-secondary);
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+
+  /* ── Layout ── */
+  .page-container {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+
+  .spinner {
+    @apply inline-block w-4 h-4 rounded-full border-2 border-current border-t-transparent animate-spin;
+  }
+
+  /* ── Semantic bg/text helpers using CSS vars ── */
+  .bg-background  { background-color: var(--color-background) !important; }
+  .bg-card        { background-color: var(--color-card) !important; }
+  .bg-accent      { background-color: var(--color-accent) !important; }
+  .border-border  { border-color: var(--color-border) !important; }
+  .text-text      { color: var(--color-text) !important; }
+  .text-text-secondary { color: var(--color-text-secondary) !important; }
+  .text-primary   { color: var(--color-primary) !important; }
+  .text-success   { color: var(--color-success) !important; }
+  .text-danger    { color: var(--color-danger) !important; }
+  .text-warning   { color: var(--color-warning) !important; }
+  .bg-primary     { background-color: var(--color-primary) !important; }
+  .bg-success     { background-color: var(--color-success) !important; }
+  .bg-danger      { background-color: var(--color-danger) !important; }
+
+  /* hover variants */
+  .hover\:bg-accent:hover { background-color: var(--color-accent) !important; }
+  .hover\:text-text:hover { color: var(--color-text) !important; }
+
+  /* primary tint */
+  .bg-primary\/10 { background-color: color-mix(in srgb, var(--color-primary) 10%, transparent) !important; }
+  .bg-danger\/10  { background-color: color-mix(in srgb, var(--color-danger) 10%, transparent) !important; }
+}
+
+/* ── Quill editor ─────────────────────────────────────────── */
+.ql-toolbar {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-color: var(--color-border) !important;
+  background: var(--color-background);
+  font-family: "Inter", sans-serif !important;
+}
+.ql-container {
+  font-family: "Inter", sans-serif !important;
+  font-size: 15px !important;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-color: var(--color-border) !important;
+  min-height: 400px;
+  background: var(--color-card);
+  color: var(--color-text);
+}
+.ql-editor {
+  min-height: 400px;
+  padding: 1.5rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+.ql-editor p { margin-bottom: 1rem; }
+.ql-editor.ql-blank::before { color: var(--color-text-secondary); font-style: normal; }
+
+html.dark .ql-toolbar .ql-stroke { stroke: var(--color-text-secondary); }
+html.dark .ql-toolbar .ql-fill  { fill:  var(--color-text-secondary); }
+html.dark .ql-toolbar .ql-picker { color: var(--color-text-secondary); }
+html.dark .ql-toolbar .ql-picker-options {
+  background: var(--color-card);
+  border-color: var(--color-border);
+}
